@@ -36,6 +36,20 @@ of the design matrix.
 \item{\code{p_values}}{The p-values of the coefficients.}
 }}
 
+\section{Methods}{
+
+\describe{
+\item{\code{coef()}}{Returns the regression coefficients as a named vector.}
+
+\item{\code{pred()}}{Returns the fitted values.}
+
+\item{\code{print()}}{Prints the call and the coefficients of the model.}
+
+\item{\code{resid()}}{Returns the residuals.}
+
+\item{\code{summary()}}{Prints the coefficients with standard errors, t-values and p-values,
+together with the residual standard error and the degrees of freedom}
+}}
 
 \examples{
 mod <- linreg$new(Petal.Length ~ Species, data = iris)

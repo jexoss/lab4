@@ -79,7 +79,50 @@ methods = list(
       .self$var_beta  <- vb
       .self$t_values  <- tv
       .self$p_values  <- pv
-    }
-  }
+      }
+    },
+print = function() {
+  "Prints the call and the coefficients of the model."
+  cat("Call:\n")
+  cat("linreg(formula = ", paste(deparse(formula), collapse = ""),
+    ", data = ", data_name, ")\n\n", sep = "")
+  cat("Coefficients:\n")
+  base::print.default(format(beta, digits = 4), print.gap = 2, quote = FALSE)
+  invisible(.self)
+},
+
+pred = function(){
+  "Returns the fitted values."
+  y_hat
+},
+
+resid = function(){
+  "Returns the residuals."
+  e
+},
+
+coef = function(){
+  "Returns the regression coefficients as a named vector."
+  beta
+},
+
+summary = function(){
+  "Prints the coefficients with standard errors, t-values and p-values,
+  together with the residual standard error and the degrees of freedom"
+  se <- sqrt(diag(var_beta))
+  coef_mat <- cbind(beta, se, t_values, p_values)
+  rownames(coef_mat) <- names(beta)
+  colnames(coef_mat) <- c("Estimate", "Std. Error", "t value", "Pr(>|t|)")
+  cat("Coefficients:\n")
+  stats::printCoefmat(coef_mat, digits = 4)
+  cat("\nResidual standard error:", format(sqrt(sigma2), digits = 4),
+      "on", df, "degrees of freedom\n")
+  invisible(.self)
+},
+
+show = function(){
+  "Prints the object using the print method."
+  .self$print()
+}
   )
 )
