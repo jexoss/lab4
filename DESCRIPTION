@@ -11,8 +11,10 @@ Description: Implements multiple linear regression with the coefficients
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 8.1.0
 Imports: 
-    ggplot2
+    ggplot2,
+    methods,
+    stats
 URL: https://github.com/jexoss/lab4
 BugReports: https://github.com/jexoss/lab4/issues
+Config/roxygen2/version: 8.1.0
