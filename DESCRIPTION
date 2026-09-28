@@ -1,11 +1,16 @@
 Package: lab4
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: Linear Regression Using QR Decomposition and Reference Classes
+Version: 0.1.0
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Jonas", "Hautamäki Bengtsson", , "jonha849@student.liu.se", 
+    role = c("aut", "cre"))
+Description: Implements multiple linear regression with the coefficients
+    and their variances computed using the QR decomposition. The results are 
+    stored in a reference class object with methods for printing, plotting, 
+    residuals predictions, coefficients and a summary of the fitted model.
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 8.1.0
+Imports: 
+    ggplot2
