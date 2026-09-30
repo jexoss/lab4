@@ -14,10 +14,14 @@ Roxygen: list(markdown = TRUE)
 Imports: 
     ggplot2,
     methods,
+    rlang,
     stats
 URL: https://github.com/jexoss/lab4
 BugReports: https://github.com/jexoss/lab4/issues
 Config/roxygen2/version: 8.1.0
 Suggests: 
+    knitr,
+    rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+VignetteBuilder: knitr

@@ -1,0 +1,65 @@
+---
+title: "Introduction to linreg"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{linreg}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(lab4)
+```
+
+## Fitting a model
+
+`linreg` fits a multiple linear regression model using the QR
+decomposition. The model is created with a formula and a data set, in the
+same way as `lm()`:
+
+```{r}
+mod <- linreg$new(Petal.Length ~ Sepal.Width + Sepal.Length, data = iris)
+mod
+```
+
+## Coefficients
+
+The estimated coefficients are available with `coef()`:
+
+```{r}
+mod$coef()
+```
+
+## Fitted values and residuals
+
+The fitted values and residuals are available with `pred()` and `resid()`:
+
+```{r}
+head(mod$pred())
+head(mod$resid())
+```
+
+## Summary
+
+`summary()` prints the coefficients together with their standard errors,
+t-values and p-values, as well as the residual standard error and the
+degrees of freedom:
+
+```{r}
+mod$summary()
+```
+
+## Diagnostic plots
+
+`plot()` produces a residuals vs fitted plot and a scale-location plot:
+
+```{r, fig.width = 6, fig.height = 4}
+mod$plot()
+```

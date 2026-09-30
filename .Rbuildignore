@@ -3,3 +3,5 @@
 ^LICENSE\.md$
 ^\.github$
 ^scratch\.R$
+^doc$
+^Meta$

@@ -41,6 +41,8 @@ of the design matrix.
 \describe{
 \item{\code{coef()}}{Returns the regression coefficients as a named vector.}
 
+\item{\code{plot()}}{Plots residuals vs fitted values and a scale-location plot with ggplot2.}
+
 \item{\code{pred()}}{Returns the fitted values.}
 
 \item{\code{print()}}{Prints the call and the coefficients of the model.}

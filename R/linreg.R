@@ -16,8 +16,10 @@
 #' @field t_values The t-values of the coefficients.
 #' @field p_values The p-values of the coefficients.
 #'
-#' @importFrom methods setRefClass
+#' @importFrom methods setRefClass new
 #' @importFrom stats model.matrix pt
+#' @importFrom rlang .data
+#' @importFrom ggplot2 ggplot
 #'
 #' @examples
 #' mod <- linreg$new(Petal.Length ~ Species, data = iris)
@@ -123,6 +125,42 @@ summary = function(){
 show = function(){
   "Prints the object using the print method."
   .self$print()
+},
+
+plot = function(){
+  "Plots residuals vs fitted values and a scale-location plot with ggplot2."
+  model_label <- paste0("linreg(", paste(deparse(formula), collapse = ""), ")")
+
+  top3 <- order(abs(e), decreasing = TRUE)[1:3]
+  plot_data <- data.frame(
+    fit = y_hat,
+    res = e,
+    sqrt_std = sqrt(abs(e / sqrt(sigma2))),
+    label = ifelse(seq_along(e) %in% top3, seq_along(e), "")
+  )
+  p1 <- ggplot2::ggplot(plot_data, ggplot2::aes(x = .data$fit, y = .data$res)) +
+    ggplot2::geom_point(shape = 1, size = 2) +
+    ggplot2::stat_summary(fun = stats::median, geom = "line", colour = "red") +
+    ggplot2::geom_text(ggplot2::aes(label = .data$label),
+                       vjust = -0.5, size = 3) +
+    ggplot2::labs(title = "Scale-location",
+                 x = paste0("Fitted values\n", model_label),
+                 y = "sqrt(|Standardized residuals|)") +
+    ggplot2::theme_bw()
+
+  p2 <- ggplot2::ggplot(plot_data, ggplot2::aes(x = .data$fit, y = .data$sqrt_std)) +
+    ggplot2::geom_point(shape = 1, size = 2) +
+    ggplot2::stat_summary(fun = stats::median, geom = "line", colour = "red") +
+    ggplot2::geom_text(ggplot2::aes(label = .data$label), vjust = -0.5, size = 3) +
+    ggplot2::labs(title = "Scale-Location",
+                  x = paste0("Fitted values\n", model_label),
+                  y = "sqrt(|Standardized residuals|)") +
+    ggplot2::theme_bw()
+
+  base::print(p1)
+  base::print(p2)
+  invisible(list(p1, p2))
+
 }
   )
 )
