@@ -12,9 +12,14 @@ The goal of lab4 is to ...
 You can install the development version of lab4 like so:
 
 ``` r
-# FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+# install.packages("devtools")
+devtools::install_github("jexoss/lab4", build_vignettes = TRUE)
 ```
+To view the vignette:
 
+```r
+browseVignettes("lab4")
+```
 ## Example
 
 This is a basic example which shows you how to solve a common problem:
